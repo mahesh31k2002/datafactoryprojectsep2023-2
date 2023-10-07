@@ -1,0 +1,22 @@
+{
+	"name": "LS_OnPrem_SQLServer_DEProj01",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "KV_DataEngin_Project01",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "OnpremSQLConnection"
+			}
+		},
+		"connectVia": {
+			"referenceName": "SQLServerOnPremIR",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

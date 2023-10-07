@@ -1,0 +1,113 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dscloudsql",
+						"type": "DatasetReference"
+					},
+					"name": "EMPLOYEE"
+				},
+				{
+					"dataset": {
+						"referenceName": "dscloudsql",
+						"type": "DatasetReference"
+					},
+					"name": "DEPT"
+				}
+			],
+			"sinks": [
+				{
+					"name": "sink1"
+				},
+				{
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "filter1"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "FullName"
+				},
+				{
+					"name": "exists1"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          EmployeeID as integer,",
+				"          FirstName as string,",
+				"          LastName as string,",
+				"          DeptID as integer,",
+				"          Salary as decimal(10,2),",
+				"          HireDate as date",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     query: 'SELECT * FROM EMPLOYEE1',",
+				"     format: 'query') ~> EMPLOYEE",
+				"source(output(",
+				"          DeptID as integer,",
+				"          DeptName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     query: 'SELECT * FROM DEPT1',",
+				"     format: 'query') ~> DEPT",
+				"EMPLOYEE filter(notEquals(DeptID, 4)) ~> filter1",
+				"filter1, DEPT join(EMPLOYEE@DeptID == DEPT@DeptID,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 select(mapColumn(",
+				"          EmployeeID,",
+				"          FirstName,",
+				"          LastName,",
+				"          DeptID = EMPLOYEE@DeptID,",
+				"          Salary,",
+				"          DeptName",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 derive(FullName = concat(FirstName, LastName)) ~> FullName",
+				"FullName, DEPT exists(select1@DeptID == DEPT@DeptID,",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists1",
+				"exists1 aggregate(groupBy(DeptID),",
+				"     totalsalary = sum(Salary),",
+				"          totalemployees = count(EmployeeID)) ~> aggregate1",
+				"aggregate1 sink(validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     store: 'cache',",
+				"     format: 'inline',",
+				"     output: false,",
+				"     saveOrder: 1) ~> sink1",
+				"aggregate1 sink(validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     store: 'cache',",
+				"     format: 'inline',",
+				"     output: false,",
+				"     saveOrder: 1) ~> sink2"
+			]
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"name": "dsblob",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsblobstorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "blobsforsnowflake"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

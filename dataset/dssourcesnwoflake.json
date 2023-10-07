@@ -1,0 +1,30 @@
+{
+	"name": "dssourcesnwoflake",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lssnowflakels",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeTable",
+		"schema": [
+			{
+				"name": "EMPLOYEEID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "FIRSTNAME",
+				"type": "VARCHAR",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"schema": "EMPLOYEEDB",
+			"table": "EMPLOYEE"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

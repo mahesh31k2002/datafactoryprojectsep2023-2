@@ -1,0 +1,19 @@
+{
+	"name": "dsingestion",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LSADLSGen2SQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "practicesources"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
