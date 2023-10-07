@@ -1,0 +1,181 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-dataengineering-project-01"
+		},
+		"AmazonS31_secretAccessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'secretAccessKey' of 'AmazonS31'"
+		},
+		"AmazonS32_secretAccessKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'secretAccessKey' of 'AmazonS32'"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabase1'"
+		},
+		"LSADLSGen2SQL_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'LSADLSGen2SQL'"
+		},
+		"Snowflake1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Snowflake1'"
+		},
+		"lssnowflakels_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'lssnowflakels'"
+		},
+		"AmazonS31_properties_typeProperties_accessKeyId": {
+			"type": "string",
+			"defaultValue": "AKIATOVBFOWFT6PHP24K"
+		},
+		"AmazonS32_properties_typeProperties_accessKeyId": {
+			"type": "string",
+			"defaultValue": "AKIATOVBFOWF2X3RAJVV"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://saretailchain.dfs.core.windows.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1003-044259-9fohpx0a"
+		},
+		"KV_DataEngin_Project01_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://kvdataengproject01.vault.azure.net/"
+		},
+		"LSADLSGen2SQL_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsgen2dataengproject.dfs.core.windows.net/"
+		},
+		"LSRestAPI_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://dummyjson.com/products"
+		},
+		"LS_OnPrem_SQLServer_DEProj01_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "OnpremSQLConnection"
+		},
+		"lsblobstorage_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'lsblobstorage'"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-dataengineering-project-01_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AmazonS31_secretAccessKey": {
+						"value": "[parameters('AmazonS31_secretAccessKey')]"
+					},
+					"AmazonS32_secretAccessKey": {
+						"value": "[parameters('AmazonS32_secretAccessKey')]"
+					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"AzureSqlDatabase1_connectionString": {
+						"value": "[parameters('AzureSqlDatabase1_connectionString')]"
+					},
+					"LSADLSGen2SQL_accountKey": {
+						"value": "[parameters('LSADLSGen2SQL_accountKey')]"
+					},
+					"Snowflake1_connectionString": {
+						"value": "[parameters('Snowflake1_connectionString')]"
+					},
+					"lssnowflakels_connectionString": {
+						"value": "[parameters('lssnowflakels_connectionString')]"
+					},
+					"AmazonS31_properties_typeProperties_accessKeyId": {
+						"value": "[parameters('AmazonS31_properties_typeProperties_accessKeyId')]"
+					},
+					"AmazonS32_properties_typeProperties_accessKeyId": {
+						"value": "[parameters('AmazonS32_properties_typeProperties_accessKeyId')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
+					},
+					"KV_DataEngin_Project01_properties_typeProperties_baseUrl": {
+						"value": "[parameters('KV_DataEngin_Project01_properties_typeProperties_baseUrl')]"
+					},
+					"LSADLSGen2SQL_properties_typeProperties_url": {
+						"value": "[parameters('LSADLSGen2SQL_properties_typeProperties_url')]"
+					},
+					"LSRestAPI_properties_typeProperties_url": {
+						"value": "[parameters('LSRestAPI_properties_typeProperties_url')]"
+					},
+					"lsblobstorage_sasUri": {
+						"value": "[parameters('lsblobstorage_sasUri')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "adf-dataengineering-project-01_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LS_OnPrem_SQLServer_DEProj01_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('LS_OnPrem_SQLServer_DEProj01_properties_typeProperties_connectionString_secretName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'adf-dataengineering-project-01_ArmTemplate_0')]"
+			]
+		}
+	]
+}

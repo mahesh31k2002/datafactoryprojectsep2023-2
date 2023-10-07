@@ -1,0 +1,66 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-dataengineering-project-01"
+		},
+		"AmazonS31_secretAccessKey": {
+			"value": ""
+		},
+		"AmazonS32_secretAccessKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"LSADLSGen2SQL_accountKey": {
+			"value": ""
+		},
+		"Snowflake1_connectionString": {
+			"value": ""
+		},
+		"lssnowflakels_connectionString": {
+			"value": ""
+		},
+		"AmazonS31_properties_typeProperties_accessKeyId": {
+			"value": "AKIATOVBFOWFT6PHP24K"
+		},
+		"AmazonS32_properties_typeProperties_accessKeyId": {
+			"value": "AKIATOVBFOWF2X3RAJVV"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://saretailchain.dfs.core.windows.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "1003-044259-9fohpx0a"
+		},
+		"KV_DataEngin_Project01_properties_typeProperties_baseUrl": {
+			"value": "https://kvdataengproject01.vault.azure.net/"
+		},
+		"LSADLSGen2SQL_properties_typeProperties_url": {
+			"value": "https://adlsgen2dataengproject.dfs.core.windows.net/"
+		},
+		"LSRestAPI_properties_typeProperties_url": {
+			"value": "https://dummyjson.com/products"
+		},
+		"LS_OnPrem_SQLServer_DEProj01_properties_typeProperties_connectionString_secretName": {
+			"value": "OnpremSQLConnection"
+		},
+		"lsblobstorage_sasUri": {
+			"value": ""
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
